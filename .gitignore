@@ -1,0 +1,6 @@
+/backend/regoback-env
+/backend/__pycache__
+__pycache__
+*.pyc 
+*.pyo
+*.pyd
