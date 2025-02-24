@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Util">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="LAPTOP-4AQBBQMN:LAPTOP-4AQBBQMN\ZanoniGuevara">
+          <Created>2025-02-11T16:53:59.8511118-04:00</Created>
+          <Type>SQL</Type>
+          <Server>LAPTOP-4AQBBQMN</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <TrustServerCertificate>False</TrustServerCertificate>
+          <HostNameInServerCertificate />
+          <EncryptionOption>True</EncryptionOption>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="BasicData.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>BasicData.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Migrate.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-4AQBBQMN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-4AQBBQMN</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Migrate.sql</FullPath>
+        </FileNode>
+        <FileNode Name="MigrateCities.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>MigrateCities.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

@@ -1,4 +1,5 @@
 /backend/regoback-env
+/backend/venv
 /backend/__pycache__
 __pycache__
 *.pyc 

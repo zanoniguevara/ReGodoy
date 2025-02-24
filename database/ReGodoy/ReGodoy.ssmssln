@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 20.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "CRUDProcedures", "CRUDProcedures\CRUDProcedures.ssmssqlproj", "{3F99EB53-D0AE-49BA-A6DB-6328CC7CEC34}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Util", "Util\Util.ssmssqlproj", "{55C13C65-0AEC-4DFC-A7C7-7FAFD2FEB473}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24F5C087-7900-4EB1-A4D7-7FFBEA413954}.Default|Default.ActiveCfg = Default
+		{3F99EB53-D0AE-49BA-A6DB-6328CC7CEC34}.Default|Default.ActiveCfg = Default
+		{55C13C65-0AEC-4DFC-A7C7-7FAFD2FEB473}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43A0382E-9D0E-4652-9755-8211D5473091}
+	EndGlobalSection
+EndGlobal
