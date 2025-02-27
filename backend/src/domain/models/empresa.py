@@ -5,7 +5,7 @@ class Empresa(BaseModel):
     Emp_Codigo: Optional[int] = None
     Emp_Nombre: str
     Tip_Codigo: int
-    Tgn_Codigo: int
+    Tgg_Codigo: int
     Est_CodigoEmp: int
     Emp_NatJur: bool
     Nac_Codigo: int
@@ -26,7 +26,7 @@ class Empresa(BaseModel):
 class EmpresaCreate(BaseModel):
     Emp_Nombre: str
     Tip_Codigo: int
-    Tgn_Codigo: int
+    Tgg_Codigo: int
     Est_CodigoEmp: int
     Emp_NatJur: bool
     Nac_Codigo: int
@@ -47,7 +47,7 @@ class EmpresaCreate(BaseModel):
 class EmpresaUpdate(BaseModel):
     Emp_Nombre: Optional[str] = None
     Tip_Codigo: Optional[int] = None
-    Tgn_Codigo: Optional[int] = None
+    Tgg_Codigo: Optional[int] = None
     Est_CodigoEmp: Optional[int] = None
     Emp_NatJur: Optional[bool] = None
     Nac_Codigo: Optional[int] = None

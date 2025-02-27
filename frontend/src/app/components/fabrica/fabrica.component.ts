@@ -1,121 +1,106 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { EmpresaService, Empresa } from '../../services/empresa.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-fabrica',
   standalone: true,
-  imports: [NgFor],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDividerModule,
+    MatTooltipModule
+  ],
   template: `
     <div class="fabrica-container">
-      <div class="header">
-        <h2>Listado de Empresas</h2>
-        <button (click)="nuevaEmpresa()" class="btn btn-primary">Nueva Empresa</button>
-      </div>
-
-      <ul class="empresas-list">
-        <li class="empresa-item" *ngFor="let empresa of empresas">
-          <div class="empresa-info">
-            <div class="empresa-header">
-              <span class="empresa-nombre">{{ empresa.Emp_Nombre }}</span>
-              <span class="empresa-rif">RIF: {{ empresa.Emp_Rif_Ci }}</span>
-            </div>
-            <div class="empresa-details">
-              <p><strong>Contacto:</strong> {{ empresa.Emp_Contacto }} {{ empresa.Emp_Apellidos }}</p>
-              <p><strong>Teléfono:</strong> {{ empresa.Emp_Telefono1 }}</p>
-              <p><strong>Correo:</strong> {{ empresa.Emp_Correo }}</p>
-              <p><strong>Descripción:</strong> {{ empresa.Emp_Descripcion }}</p>
-            </div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Listado de Empresas</mat-card-title>
+          <div class="spacer"></div>
+          <button mat-raised-button color="primary" (click)="nuevaEmpresa()">
+            <mat-icon>add</mat-icon> Nueva Empresa
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="responsive-grid">
+            <mat-card *ngFor="let empresa of empresas" class="empresa-card">
+              <mat-card-header>
+                <mat-card-title>{{ empresa.Emp_Nombre }}</mat-card-title>
+                <mat-card-subtitle>RIF: {{ empresa.Emp_Rif_Ci }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p><strong>Contacto:</strong> {{ empresa.Emp_Contacto }} {{ empresa.Emp_Apellidos }}</p>
+                <p><strong>Teléfono:</strong> {{ empresa.Emp_Telefono1 }}</p>
+                <p><strong>Correo:</strong> {{ empresa.Emp_Correo }}</p>
+                <mat-divider></mat-divider>
+                <p class="descripcion"><strong>Descripción:</strong> {{ empresa.Emp_Descripcion }}</p>
+              </mat-card-content>
+              <mat-card-actions align="end">
+                <button mat-icon-button color="primary" matTooltip="Editar" (click)="editEmpresa(empresa)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" matTooltip="Eliminar" (click)="deleteEmpresa(empresa.Emp_Codigo)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-card-actions>
+            </mat-card>
           </div>
-          <div class="empresa-actions">
-            <button 
-              (click)="editEmpresa(empresa)" 
-              class="btn btn-edit"
-            >
-              Editar
-            </button>
-            <button 
-              (click)="deleteEmpresa(empresa.Emp_Codigo)" 
-              class="btn btn-delete"
-            >
-              Eliminar
-            </button>
-          </div>
-        </li>
-      </ul>
+        </mat-card-content>
+      </mat-card>
     </div>
   `,
   styles: [`
     .fabrica-container {
-      padding: 2rem;
+      padding: 1rem;
     }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
+    .spacer {
+      flex: 1 1 auto;
     }
-    .btn {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
+    .responsive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
     }
-    .btn-primary {
-      background-color: #007bff;
-      color: white;
-    }
-    .btn-edit {
-      background-color: #28a745;
-      color: white;
-    }
-    .btn-delete {
-      background-color: #dc3545;
-      color: white;
-    }
-    .empresas-list {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
-    }
-    .empresa-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 1.5rem;
-      background-color: white;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .empresa-info {
-      flex: 1;
-    }
-    .empresa-header {
-      margin-bottom: 1rem;
-    }
-    .empresa-nombre {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #2c3e50;
-      display: block;
-    }
-    .empresa-rif {
-      color: #666;
-      font-size: 0.9rem;
-    }
-    .empresa-details {
-      color: #666;
-    }
-    .empresa-details p {
-      margin: 0.5rem 0;
-    }
-    .empresa-actions {
+    .empresa-card {
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      justify-content: center;
+    }
+    .empresa-card mat-card-content {
+      flex-grow: 1;
+    }
+    .descripcion {
+      margin-top: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    mat-card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 599px) {
+      .responsive-grid {
+        grid-template-columns: 1fr;
+      }
     }
   `]
 })

@@ -2,197 +2,192 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmpresaService, Empresa } from '../../services/empresa.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-fabrica-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatGridListModule
+  ],
   template: `
     <div class="form-container">
-      <h2>{{ isEditing ? 'Editar' : 'Nueva' }} Empresa</h2>
-      
-      <div class="empresa-form">
-        <div class="form-group">
-          <label for="Emp_Nombre">Nombre de la Empresa</label>
-          <input id="Emp_Nombre" type="text" [(ngModel)]="empresa.Emp_Nombre" class="form-control">
-        </div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ isEditing ? 'Editar' : 'Nueva' }} Empresa</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-fields">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre de la Empresa</mat-label>
+              <input matInput [(ngModel)]="empresa.Emp_Nombre" required>
+            </mat-form-field>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Tip_Codigo">Código de Tipo</label>
-            <input id="Tip_Codigo" type="number" [(ngModel)]="empresa.Tip_Codigo" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Tgn_Codigo">Código TGN</label>
-            <input id="Tgn_Codigo" type="number" [(ngModel)]="empresa.Tgn_Codigo" class="form-control">
-          </div>
-        </div>
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Código de Tipo</mat-label>
+                <input matInput type="number" [(ngModel)]="empresa.Tip_Codigo">
+              </mat-form-field>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Est_CodigoEmp">Código de Estado</label>
-            <input id="Est_CodigoEmp" type="number" [(ngModel)]="empresa.Est_CodigoEmp" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Emp_NatJur">Naturaleza Jurídica</label>
-            <select id="Emp_NatJur" [(ngModel)]="empresa.Emp_NatJur" class="form-control">
-              <option [ngValue]="true">Jurídica</option>
-              <option [ngValue]="false">Natural</option>
-            </select>
-          </div>
-        </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Código TGN</mat-label>
+                <input matInput type="number" [(ngModel)]="empresa.Tgn_Codigo">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Nac_Codigo">Código de Nacionalidad</label>
-            <input id="Nac_Codigo" type="number" [(ngModel)]="empresa.Nac_Codigo" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Emp_Rif_Ci">RIF/CI</label>
-            <input id="Emp_Rif_Ci" type="text" [(ngModel)]="empresa.Emp_Rif_Ci" class="form-control">
-          </div>
-        </div>
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Código de Estado</mat-label>
+                <input matInput type="number" [(ngModel)]="empresa.Est_CodigoEmp">
+              </mat-form-field>
 
-        <div class="form-group">
-          <label for="Zon_Codigo">Código de Zona</label>
-          <input id="Zon_Codigo" type="number" [(ngModel)]="empresa.Zon_Codigo" class="form-control">
-        </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Naturaleza Jurídica</mat-label>
+                <mat-select [(ngModel)]="empresa.Emp_NatJur">
+                  <mat-option [value]="true">Jurídica</mat-option>
+                  <mat-option [value]="false">Natural</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Emp_Contacto">Nombre de Contacto</label>
-            <input id="Emp_Contacto" type="text" [(ngModel)]="empresa.Emp_Contacto" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Emp_Apellidos">Apellidos</label>
-            <input id="Emp_Apellidos" type="text" [(ngModel)]="empresa.Emp_Apellidos" class="form-control">
-          </div>
-        </div>
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Código de Nacionalidad</mat-label>
+                <input matInput type="number" [(ngModel)]="empresa.Nac_Codigo">
+              </mat-form-field>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Emp_Telefono1">Teléfono 1</label>
-            <input id="Emp_Telefono1" type="text" [(ngModel)]="empresa.Emp_Telefono1" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Emp_Telefono2">Teléfono 2</label>
-            <input id="Emp_Telefono2" type="text" [(ngModel)]="empresa.Emp_Telefono2" class="form-control">
-          </div>
-        </div>
+              <mat-form-field appearance="outline">
+                <mat-label>RIF/CI</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Rif_Ci">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Emp_Fax">Fax</label>
-            <input id="Emp_Fax" type="text" [(ngModel)]="empresa.Emp_Fax" class="form-control">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Código de Zona</mat-label>
+              <input matInput type="number" [(ngModel)]="empresa.Zon_Codigo">
+            </mat-form-field>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre de Contacto</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Contacto">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Apellidos">
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Teléfono 1</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Telefono1">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Teléfono 2</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Telefono2">
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Fax</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Fax">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Celular</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_Celular">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" [(ngModel)]="empresa.Emp_Correo">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Sitio Web</mat-label>
+              <input matInput [(ngModel)]="empresa.Emp_Site">
+            </mat-form-field>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>RIF Personal</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_RifPerson">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>RUC</mat-label>
+                <input matInput [(ngModel)]="empresa.Emp_RUC">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput [(ngModel)]="empresa.Emp_Descripcion" rows="3"></textarea>
+            </mat-form-field>
           </div>
-          <div class="form-group">
-            <label for="Emp_Celular">Celular</label>
-            <input id="Emp_Celular" type="text" [(ngModel)]="empresa.Emp_Celular" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="Emp_Correo">Correo Electrónico</label>
-          <input id="Emp_Correo" type="email" [(ngModel)]="empresa.Emp_Correo" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="Emp_Site">Sitio Web</label>
-          <input id="Emp_Site" type="text" [(ngModel)]="empresa.Emp_Site" class="form-control">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="Emp_RifPerson">RIF Personal</label>
-            <input id="Emp_RifPerson" type="text" [(ngModel)]="empresa.Emp_RifPerson" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="Emp_RUC">RUC</label>
-            <input id="Emp_RUC" type="text" [(ngModel)]="empresa.Emp_RUC" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="Emp_Descripcion">Descripción</label>
-          <textarea id="Emp_Descripcion" [(ngModel)]="empresa.Emp_Descripcion" class="form-control" rows="3"></textarea>
-        </div>
-
-        <div class="form-actions">
-          <button (click)="guardar()" class="btn btn-primary">
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="cancelar()">Cancelar</button>
+          <button mat-raised-button color="primary" (click)="guardar()">
             {{ isEditing ? 'Actualizar' : 'Crear' }}
           </button>
-          <button (click)="cancelar()" class="btn btn-secondary">
-            Cancelar
-          </button>
-        </div>
-      </div>
+        </mat-card-actions>
+      </mat-card>
     </div>
   `,
   styles: [`
     .form-container {
-      padding: 2rem;
+      padding: 1rem;
       max-width: 800px;
       margin: 0 auto;
     }
-    .empresa-form {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .form-group {
-      margin-bottom: 1rem;
-      flex: 1;
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
     .form-row {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 16px;
+      flex-wrap: wrap;
     }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #444;
-      font-weight: 500;
+    .form-row mat-form-field {
+      flex: 1;
+      min-width: 200px;
     }
-    .form-control {
+    .full-width {
       width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
     }
-    textarea.form-control {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .form-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      justify-content: flex-end;
-    }
-    .btn {
-      padding: 0.5rem 1.5rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .btn-primary {
-      background-color: #007bff;
-      color: white;
-    }
-    .btn-secondary {
-      background-color: #6c757d;
-      color: white;
-    }
-    select.form-control {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 0.5rem center;
-      background-size: 1em;
+    @media (max-width: 599px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      .form-row mat-form-field {
+        width: 100%;
+      }
     }
   `]
 })

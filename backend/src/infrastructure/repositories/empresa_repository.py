@@ -22,7 +22,7 @@ class EmpresaRepository:
                     (
                         empresa.Emp_Nombre,
                         empresa.Tip_Codigo,
-                        empresa.Tgn_Codigo,
+                        empresa.Tgg_Codigo,
                         empresa.Est_CodigoEmp,
                         empresa.Emp_NatJur,
                         empresa.Nac_Codigo,
@@ -65,7 +65,7 @@ class EmpresaRepository:
                         Emp_Codigo=row.Emp_Codigo,
                         Emp_Nombre=row.Emp_Nombre,
                         Tip_Codigo=row.Tip_Codigo,
-                        Tgn_Codigo=row.Tgn_Codigo,
+                        Tgg_Codigo=row.Tgg_Codigo,
                         Est_CodigoEmp=row.Est_CodigoEmp,
                         Emp_NatJur=row.Emp_NatJur,
                         Nac_Codigo=row.Nac_Codigo,
@@ -106,7 +106,7 @@ class EmpresaRepository:
                         Emp_Codigo=row.Emp_Codigo,
                         Emp_Nombre=row.Emp_Nombre,
                         Tip_Codigo=row.Tip_Codigo,
-                        Tgn_Codigo=row.Tgn_Codigo,
+                        Tgg_Codigo=row.Tgg_Codigo,
                         Est_CodigoEmp=row.Est_CodigoEmp,
                         Emp_NatJur=row.Emp_NatJur,
                         Nac_Codigo=row.Nac_Codigo,
@@ -149,9 +149,9 @@ class EmpresaRepository:
                 if empresa.Tip_Codigo is not None:
                     set_clauses.append("Tip_Codigo = ?")
                     params.append(empresa.Tip_Codigo)
-                if empresa.Tgn_Codigo is not None:
-                    set_clauses.append("Tgn_Codigo = ?")
-                    params.append(empresa.Tgn_Codigo)
+                if empresa.Tgg_Codigo is not None:
+                    set_clauses.append("Tgg_Codigo = ?")
+                    params.append(empresa.Tgg_Codigo)
                 if empresa.Est_CodigoEmp is not None:
                     set_clauses.append("Est_CodigoEmp = ?")
                     params.append(empresa.Est_CodigoEmp)
