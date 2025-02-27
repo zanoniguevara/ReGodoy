@@ -5,7 +5,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "demo": {
+    "re-godoy": {
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -29,7 +29,7 @@
             "assets": [],
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "outputPath": "dist/demo",
+            "outputPath": "dist",
             "polyfills": ["zone.js"],
             "scripts": [],
             "styles": ["src/global_styles.css"],
@@ -40,10 +40,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "buildTarget": "demo:build:development"
+              "buildTarget": "re-godoy:build:development"
             },
             "production": {
-              "buildTarget": "demo:build:production"
+              "buildTarget": "re-godoy:build:production"
             }
           },
           "defaultConfiguration": "development"
